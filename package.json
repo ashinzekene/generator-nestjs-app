@@ -1,0 +1,14 @@
+{
+  "name": "generator-nestjs",
+  "version": "0.0.1",
+  "description": "A yeoman generator for nestjs apps",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.0.0"
+  }
+}

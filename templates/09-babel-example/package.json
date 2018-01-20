@@ -2,8 +2,7 @@
   "name": "<%= config.identifier %>",
   "version": "1.0.0",
   "description": "<%= config.description %>",
-  "license": "MIT",
-  "publisher": "<%= config.publisher %>",
+  "license": "MIT",  "publisher": "<%= config.publisher %>",
   "scripts": {
     "build": "babel src -d dist",
     "prestart": "npm run build",

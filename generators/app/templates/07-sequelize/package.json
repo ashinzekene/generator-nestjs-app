@@ -1,8 +1,9 @@
 {
   "name": "<%= config.identifier %>",
   "version": "1.0.0",
-  "description": "<% config.description %>",
+  "description": "<%= config.description %>",
   "license": "MIT",
+  "publisher": "<%= config.publisher %>",
   "scripts": {
     "start": "node index.js",
     "prestart:prod": "tsc",

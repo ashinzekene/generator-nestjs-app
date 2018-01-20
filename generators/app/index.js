@@ -5,44 +5,86 @@ module.exports = class extends Generator {
     super(args, opt)
 
   }
+  welcome() {
+    this.log("Welcome to the NESTJS Generator! ")
+  }
 
-  prompting() {
+  promptName() {
+    this.prompt({
+      type: ''
+    })
+  }
+  
+  promptingType() {
     this.prompt({
       type: 'list',
       name: 'type',
-      message: 'What type of extension do you want to create?',
+      message: 'What type of NESTJS app do you want to start?',
       choices: [{
-        name: 'New Extension (TypeScript)',
-        value: 'ext-command-ts'
+        name: 'Basic app with Interceptors and Middlewares',
+        value: '01-cats-app'
       },
       {
-        name: 'New Extension (JavaScript)',
-        value: 'ext-command-js'
+        name: 'A Soket app with both cliebt and frontend',
+        value: '02-gateways'
       },
       {
-        name: 'New Color Theme',
-        value: 'ext-colortheme'
+        name: 'A microservices app',
+        value: '03-microservices'
       },
       {
-        name: 'New Language Support',
-        value: 'ext-language'
+        name: 'An Injector app',
+        value: '04-injector'
       },
       {
-        name: 'New Code Snippets',
-        value: 'ext-snippets'
+        name: 'SQL Typeorm',
+        value: '05-sql-typeorm'
       },
       {
-        name: 'New Extension Pack',
-        value: 'ext-extensionpack'
+        name: 'Mongoose',
+        value: '06-mongoose'
+      },
+      {
+        name: 'Seqelize',
+        value: '07-sequelize'
+      },
+      {
+        name: 'Passport',
+        value: '08-passport'
+      },
+      {
+        name: 'Babel JS',
+        value: '09-babel-example'
+      },
+      {
+        name: 'Mockgoose',
+        value: '10-mockgoose'
+      },
+      {
+        name: 'Swagger',
+        value: '11-swagger'
+      },
+      {
+        name: 'Graph QL apollo',
+        value: '12-graphql-apollo'
+      },
+      {
+        name: 'Mongo Typeorm',
+        value: '13-mongo-typeorm'
+      },
+      {
+        name: 'Configurable Mongoose',
+        value: '14-mongoose-module'
       }
-      ]
-  
-  method1() {
-        this.log('method 1 just ran');
-      }
+    ]
+    }).then(type => {
+      this.appConfig.type = type.type
+      this.log("You selected", type.type)
+    })
+  }
 
-  method2() {
-        this.log('method 2 just ran');
-      }
+  _writeFiles() {
+    this.fs.copyTpl()
+  }
 
-    };
+};

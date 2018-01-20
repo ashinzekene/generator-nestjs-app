@@ -1,90 +1,51 @@
 const Generator = require('yeoman-generator');
+const walkDir = require('./walkDir')
+const appTypes = require('./appTypes')
 
 module.exports = class extends Generator {
   constructor(args, opt) {
     super(args, opt)
-
   }
   welcome() {
     this.log("Welcome to the NESTJS Generator! ")
   }
 
-  promptName() {
-    this.prompt({
-      type: ''
-    })
-  }
-  
-  promptingType() {
-    this.prompt({
-      type: 'list',
-      name: 'type',
-      message: 'What type of NESTJS app do you want to start?',
-      choices: [{
-        name: 'Basic app with Interceptors and Middlewares',
-        value: '01-cats-app'
+  promptUser() {
+    return this.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Enter a name for your app',
+        default: this.appname,
+        // validate: (name) => /^[a-z]-{1,216}$/.test(name)
       },
       {
-        name: 'A Soket app with both cliebt and frontend',
-        value: '02-gateways'
+        type: 'input',
+        name: 'description',
+        message: 'Enter a description for your app',
       },
       {
-        name: 'A microservices app',
-        value: '03-microservices'
-      },
-      {
-        name: 'An Injector app',
-        value: '04-injector'
-      },
-      {
-        name: 'SQL Typeorm',
-        value: '05-sql-typeorm'
-      },
-      {
-        name: 'Mongoose',
-        value: '06-mongoose'
-      },
-      {
-        name: 'Seqelize',
-        value: '07-sequelize'
-      },
-      {
-        name: 'Passport',
-        value: '08-passport'
-      },
-      {
-        name: 'Babel JS',
-        value: '09-babel-example'
-      },
-      {
-        name: 'Mockgoose',
-        value: '10-mockgoose'
-      },
-      {
-        name: 'Swagger',
-        value: '11-swagger'
-      },
-      {
-        name: 'Graph QL apollo',
-        value: '12-graphql-apollo'
-      },
-      {
-        name: 'Mongo Typeorm',
-        value: '13-mongo-typeorm'
-      },
-      {
-        name: 'Configurable Mongoose',
-        value: '14-mongoose-module'
+        type: 'list',
+        name: 'type',
+        message: 'What type of NESTJS app do you want to start?',
+        choices: appTypes
       }
-    ]
-    }).then(type => {
-      this.appConfig.type = type.type
-      this.log("You selected", type.type)
+    ]).then(res => {
+      this.appConfig = {}
+      this.appConfig.appName = res.name
+      this.appConfig.appDescription = res.description
+      this.appConfig.appType = res.type
+      this.log(`
+      Name: ${this.appConfig.appName}
+      Description: ${this.appConfig.appDescription}
+      Type: ${appTypes.find(type => type.value === this.appConfig.appType).name}
+      `)
     })
   }
 
   _writeFiles() {
-    this.fs.copyTpl()
+    // this.sourceRoot(path.join("..", "..", './templates/' + this.appConfig.type))
+    // this.fs.copyTpl()
   }
 
 };

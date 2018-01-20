@@ -1,5 +1,5 @@
 {
-  "name": "<%= config.name %>",
+  "name": "<%= config.identifier %>",
   "version": "1.0.0",
   "description": "<% config.description %>",
   "license": "MIT",

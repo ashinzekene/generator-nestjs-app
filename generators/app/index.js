@@ -1,4 +1,6 @@
+const path = require('path')
 const Generator = require('yeoman-generator');
+const yosay = require('yosay')
 const walkDir = require('./walkDir')
 const appTypes = require('./appTypes')
 
@@ -7,7 +9,7 @@ module.exports = class extends Generator {
     super(args, opt)
   }
   welcome() {
-    this.log("Welcome to the NESTJS Generator! ")
+    this.log(yosay("Welcome to the NESTJS Generator! "))
   }
 
   promptUser() {
@@ -17,12 +19,24 @@ module.exports = class extends Generator {
         name: 'name',
         message: 'Enter a name for your app',
         default: this.appname,
-        // validate: (name) => /^[a-z]-{1,216}$/.test(name)
+      },
+      {
+        type: 'input',
+        name: 'identifier',
+        message: 'Enter your app\'s identifier (no capital-letter or space)',
+        validate: function(name) {
+          return /^[a-z0-9][a-z0-9\-]*$/.test(name) || "App identifier cannot contain capital letters or space"
+        }
       },
       {
         type: 'input',
         name: 'description',
         message: 'Enter a description for your app',
+      },
+      {
+        type: 'input',
+        name: 'publisher',
+        message: 'Enter publisher\'s name',
       },
       {
         type: 'list',
@@ -32,20 +46,30 @@ module.exports = class extends Generator {
       }
     ]).then(res => {
       this.appConfig = {}
-      this.appConfig.appName = res.name
-      this.appConfig.appDescription = res.description
-      this.appConfig.appType = res.type
+      this.appConfig.name = res.name
+      this.appConfig.description = res.description
+      this.appConfig.publisher = res.publisher
+      this.appConfig.type = res.type
       this.log(`
-      Name: ${this.appConfig.appName}
-      Description: ${this.appConfig.appDescription}
-      Type: ${appTypes.find(type => type.value === this.appConfig.appType).name}
+      Name: ${this.appConfig.name}
+      Description: ${this.appConfig.description}
+      Publisher: ${this.appConfig.publisher}
+      Type: ${appTypes.find(type => type.value === this.appConfig.type).name}
       `)
     })
   }
 
   _writeFiles() {
-    // this.sourceRoot(path.join("..", "..", './templates/' + this.appConfig.type))
-    // this.fs.copyTpl()
+    this.templatePath()
+    var files = walkDir(path.join(__dirname, "./templates/", this.appConfig.type))
+    files = files.map(pth => pth.replace(RegExp(`.+${this.appConfig.type}`), ""))
+    console.log(files.join("\n"))
+
+    // this.fs.copyTpl(
+    //   this.templatePath('index.html'),
+    //   this.destinationPath('public/index.html'),
+    //   { title: 'Templating with Yeoman' }
+    // );    
   }
 
 };

@@ -1,5 +1,5 @@
 {
-  "name": "<%= config.name %>",
+  "name": "<%= config.identifier %>",
   "version": "1.0.0",
   "description": "<% config.description %>",
   "license": "MIT",
@@ -9,14 +9,13 @@
     "start:prod": "node dist/server.js"
   },
   "dependencies": {
-    "@nestjs/common": "^4.5.0",
-    "@nestjs/core": "^4.5.0",
-    "@nestjs/graphql": "^1.0.0",
-    "apollo-server-express": "^1.2.0",
-    "graphql": "^0.11.7",
-    "graphql-tools": "^2.11.0",
+    "@nestjs/common": "^4.3.0",
+    "@nestjs/core": "^4.3.0",
+    "@nestjs/typeorm": "^1.0.0",
+    "mongodb": "^2.2.31",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
+    "typeorm": "0.1.0-alpha.40",
     "typescript": "^2.4.2"
   },
   "devDependencies": {

@@ -1,1 +1,3 @@
-# GENERATOR NESTJS
+# <%= config.name %>
+
+<%= config.description %>

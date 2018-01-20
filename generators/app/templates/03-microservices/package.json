@@ -1,5 +1,5 @@
 {
-  "name": "<%= config.name %>",
+  "name": "<%= config.identifier %>",
   "version": "1.0.0",
   "description": "<% config.description %>",
   "license": "MIT",
@@ -11,14 +11,19 @@
   "dependencies": {
     "@nestjs/common": "^4.3.0",
     "@nestjs/core": "^4.3.0",
-    "@nestjs/mongoose": "^1.0.1",
-    "mongoose": "^4.11.13",
+    "@nestjs/microservices": "^4.3.0",
+    "@nestjs/testing": "^4.3.0",
+    "@nestjs/websockets": "^4.3.0",
+    "amqplib": "^0.5.1",
+    "class-transformer": "^0.1.7",
+    "class-validator": "^0.7.2",
+    "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
     "typescript": "^2.4.2"
   },
   "devDependencies": {
-    "@types/mongoose": "^4.7.23",
+    "@types/amqplib": "^0.5.4",
     "@types/node": "^7.0.41",
     "ts-node": "^3.3.0"
   }

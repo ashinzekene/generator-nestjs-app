@@ -3,31 +3,46 @@ const Generator = require('yeoman-generator');
 module.exports = class extends Generator {
   constructor(args, opt) {
     super(args, opt)
-    
+
   }
 
   prompting() {
-    return this.prompt([{
-      type    : 'input',
-      name    : 'name',
-      message : 'Your project name',
-      default : this.appname // Default to current folder name
-    }, {
-      type    : 'confirm',
-      name    : 'cool',
-      message : 'Would you like to enable the Cool feature?'
-    }]).then((answers) => {
-      this.log('app name', answers.name);
-      this.log('cool feature', answers.cool);
-    });
-  }
+    this.prompt({
+      type: 'list',
+      name: 'type',
+      message: 'What type of extension do you want to create?',
+      choices: [{
+        name: 'New Extension (TypeScript)',
+        value: 'ext-command-ts'
+      },
+      {
+        name: 'New Extension (JavaScript)',
+        value: 'ext-command-js'
+      },
+      {
+        name: 'New Color Theme',
+        value: 'ext-colortheme'
+      },
+      {
+        name: 'New Language Support',
+        value: 'ext-language'
+      },
+      {
+        name: 'New Code Snippets',
+        value: 'ext-snippets'
+      },
+      {
+        name: 'New Extension Pack',
+        value: 'ext-extensionpack'
+      }
+      ]
   
   method1() {
-    this.log('method 1 just ran');
-  }
+        this.log('method 1 just ran');
+      }
 
   method2() {
-    this.log('method 2 just ran');
-  }
-  
-};
+        this.log('method 2 just ran');
+      }
+
+    };

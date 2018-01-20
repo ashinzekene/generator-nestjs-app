@@ -1,6 +1,6 @@
 {
   "name": "generator-nestjs-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A yeoman generator for nestjs apps",
   "repository": {
     "type": "git",

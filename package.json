@@ -1,5 +1,5 @@
 {
-  "name": "generator-nestjs",
+  "name": "generator-nestjs-app",
   "version": "0.0.1",
   "description": "A yeoman generator for nestjs apps",
   "files": [

@@ -48,28 +48,32 @@ module.exports = class extends Generator {
       this.appConfig = {}
       this.appConfig.name = res.name
       this.appConfig.description = res.description
+      this.appConfig.identifier = res.identifier
       this.appConfig.publisher = res.publisher
       this.appConfig.type = res.type
       this.log(`
       Name: ${this.appConfig.name}
+      Identifier: ${this.appConfig.identifier}
       Description: ${this.appConfig.description}
       Publisher: ${this.appConfig.publisher}
       Type: ${appTypes.find(type => type.value === this.appConfig.type).name}
       `)
     })
+    this._writeFiles()
   }
 
   _writeFiles() {
-    this.templatePath()
-    var files = walkDir(path.join(__dirname, "./templates/", this.appConfig.type))
-    files = files.map(pth => pth.replace(RegExp(`.+${this.appConfig.type}`), ""))
-    console.log(files.join("\n"))
+    let files = walkDir(path.join(__dirname, "./templates/", this.appConfig.type))
+    let newFiles = files.map(pth => pth.replace(RegExp(`.+${this.appConfig.type}`), ""))
 
-    // this.fs.copyTpl(
-    //   this.templatePath('index.html'),
-    //   this.destinationPath('public/index.html'),
-    //   { title: 'Templating with Yeoman' }
-    // );    
+    console.log(this.fs.read(this.templatePath('.gitignore')))
+    newFiles.forEach(file => {
+      this.fs.copyTpl(
+        this.templatePath(this.appConfig.type + "/" +file),
+        this.destinationPath(this.appConfig.identifier+"/"+file),
+        { config: this.appConfig }
+      );    
+    })
   }
 
 };

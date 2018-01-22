@@ -1,6 +1,3 @@
-const fs = require("fs")
-
-let index = `
 const path = require('path')
 const chalk = require('chalk')
 const Generator = require('yeoman-generator');
@@ -12,7 +9,7 @@ module.exports = class extends Generator {
     this.argument("name")
   }
   initializing() {
-    this.log(yosay(Welcome to the ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}))
+    this.log(yosay(`Welcome to the ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}`))
   }
 
   prompting() {
@@ -37,10 +34,4 @@ module.exports = class extends Generator {
       { config: this.appConfig }
     );
   }
-`
-
-fs.readdirSync('./generator').forEach(gen => {
-  if (gen.search("app") === -1) {
-    fs.writeFileSync(path.resolve("./generators", gen, "/index.js"), index)
-  }
-})
+}

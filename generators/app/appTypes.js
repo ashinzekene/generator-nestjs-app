@@ -3,7 +3,7 @@ module.exports = [{
   value: '01-cats-app'
 },
 {
-  name: 'A Soket app with both cliebt and frontend',
+  name: 'A Socket app with both client and server',
   value: '02-gateways'
 },
 {

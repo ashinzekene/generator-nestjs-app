@@ -1,13 +1,20 @@
 const path = require('path')
+const os = require('os')
 const chalk = require('chalk')
 const Generator = require('yeoman-generator');
 const yosay = require('yosay')
-const walkDir = require('./walkDir')
+const walkDir = require('../../utils/walk-dir')
 const appTypes = require('./appTypes')
 
 module.exports = class extends Generator {
   constructor(args, opt) {
     super(args, opt)
+    this.option('skip-install', {
+      default: false,
+      type: Boolean
+    });
+    this.option('yarn');
+    this.option('npm');
   }
   initializing() {
     this.log(yosay(`Welcome to the ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}`))
@@ -25,8 +32,8 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'identifier',
         message: 'Enter your app\'s identifier',
-        default: this.appname,        
-        validate: function(name) {
+        default: this.appname,
+        validate: function (name) {
           return /^[a-z0-9][a-z0-9\-]*$/.test(name) || "App identifier can only contain lowercase letters, numbers and -"
         }
       },
@@ -39,6 +46,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'publisher',
         message: 'Enter publisher\'s name',
+        default: os.userInfo.username
       },
       {
         type: 'list',
@@ -53,8 +61,7 @@ module.exports = class extends Generator {
       this.appConfig.identifier = res.identifier
       this.appConfig.publisher = res.publisher
       this.appConfig.type = res.type
-      this.log(chalk.bgRed.white(`
-      ${chalk.yellowBright('Your Config')}
+      this.log(chalk.bgWhite.red(`
       
       Name: ${this.appConfig.name}
       Identifier: ${this.appConfig.identifier}
@@ -73,14 +80,37 @@ module.exports = class extends Generator {
     newFiles.forEach(file => {
       this.fs.copyTpl(
         this.templatePath(this.appConfig.type + "/"),
-        this.destinationPath(this.appConfig.identifier+"/"),
+        this.destinationPath(this.appConfig.identifier + "/"),
         { config: this.appConfig }
-      );    
+      );
     })
   }
 
   install() {
+    if (this.options['skip-install']) {
+      this.log(chalk.green(`
+        To install dependencies, run
 
+        ${chalk.white('$')} cd ${this.appConfig.identifier}/
+        ${chalk.white('$')} npm install
+      `))
+    } else {
+      this.installDependencies({
+        npm: this.options['npm'],
+        yarn: this.options['yarn']
+      }).then(() => {
+        this.log(chalk.green(`
+            Ready to rubmle....
+          `))
+      }).catch(() => {
+        this.log(chalk.green(`
+        Could not install dependencies, to install them later, run 
+
+        ${chalk.white('$')} cd ${this.appConfig.identifier}/
+        ${chalk.white('$')} npm install
+        `))
+      })
+    }
   }
-  
+
 };

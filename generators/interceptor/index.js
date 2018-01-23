@@ -1,3 +1,4 @@
+
 const path = require('path')
 const chalk = require('chalk')
 const Generator = require('yeoman-generator');
@@ -7,9 +8,7 @@ module.exports = class extends Generator {
   constructor(args, opt) {
     super(args, opt)
     this.argument("name")
-  }
-  initializing() {
-    this.log(yosay(`Welcome to the ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}`))
+    this.appConfig = {}
   }
 
   prompting() {
@@ -28,9 +27,10 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    let name = this.appConfig['name']
     this.fs.copyTpl(
-      this.templatePath("/"),
-      this.destinationPath(this.appConfig['name'] + ".ts"),
+      this.templatePath("index.decorator.ts"),
+      this.destinationPath(`src/modules/common/${name.toLowerCase()}.decorator.ts`),
       { config: this.appConfig }
     );
   }

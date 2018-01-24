@@ -5,6 +5,7 @@ const Generator = require('yeoman-generator');
 const yosay = require('yosay')
 const kebabToPascal = require('../../utils/case-change').kebabToPascal
 const kebabToCamel = require('../../utils/case-change').kebabToCamel
+const toLower = require('../../utils/case-change').toLower
 
 module.exports = class extends Generator {
   constructor(args, opt) {

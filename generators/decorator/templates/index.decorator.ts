@@ -1,3 +1,3 @@
 import { ReflectMetadata } from '@nestjs/common';
 
-export const <%= config.name[0].toUpperCase() + config.name.substring(1) %> = (...<%= config.name.toLowerCase() %>: string[]) => ReflectMetadata('<%= config.name.toLowerCase() %>', <%= config.name.toLowerCase() %>);
+export const <%= kebabToPascal(config.name) %> = (...<%= kebabToCamel(config.name) %>: string[]) => ReflectMetadata('<%= kebabToCamel(config.name) %>', <%= kebabToCamel(config.name) %>);

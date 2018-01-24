@@ -3,6 +3,9 @@ const path = require('path')
 const chalk = require('chalk')
 const Generator = require('yeoman-generator');
 const yosay = require('yosay')
+const kebabToPascal = require('../../utils/case-change').kebabToPascal
+const kebabToCamel = require('../../utils/case-change').kebabToCamel
+const toLower = require('../../utils/case-change').toLower
 
 module.exports = class extends Generator {
   constructor(args, opt) {
@@ -29,9 +32,9 @@ module.exports = class extends Generator {
   writing() {
     let name = this.appConfig['name']
     this.fs.copyTpl(
-      this.templatePath("index.index.ts"),
-      this.destinationPath(`src/modules/common/${name.toLowerCase()}.index.ts`),
-      { config: this.appConfig }
+      this.templatePath("index.decorator.ts"),
+      this.destinationPath(`src/modules/common/${name.toLowerCase()}.decorator.ts`),
+      { config: this.appConfig, kebabToCamel, kebabToPascal }
     );
   }
 }

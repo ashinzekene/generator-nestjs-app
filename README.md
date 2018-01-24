@@ -74,7 +74,7 @@ $ yo nestjs:decorator roles
 
 ### FILE AND COMPONENT NAMING
 
-By [Angular File Naming Convention](angular.io/docs/ts/latest/guide/style-guide.html#!/), Names for components should be supplied in kebab case. For example
+By [Angular File Naming Convention](https://angular.io/guide/styleguide), names for components should be in kebab case. For example
 
 ```
 yo nest:decorator app-user-routes

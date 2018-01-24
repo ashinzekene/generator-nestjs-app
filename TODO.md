@@ -11,7 +11,7 @@
 
 ### Generators For
 - [x] [] Decorator
-- [] [] Exception
+- [x] [] Exception
 - [] [] Filter
 - [x] [] Guard
 - [x] [] Interceptor

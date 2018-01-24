@@ -6,6 +6,7 @@ const yosay = require('yosay')
 const kebabToPascal = require('../../utils/case-change').kebabToPascal
 const kebabToCamel = require('../../utils/case-change').kebabToCamel
 const toLower = require('../../utils/case-change').toLower
+const kebabToConstant = require('../../utils/case-change').kebabToConstant
 
 module.exports = class extends Generator {
   constructor(args, opt) {
@@ -34,7 +35,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath("index.exception.ts"),
       this.destinationPath(`src/modules/common/${name.toLowerCase()}.exception.ts`),
-      { config: this.appConfig, kebabToCamel, kebabToPascal }
+      { config: this.appConfig, kebabToCamel, kebabToPascal, kebabToConstant }
     );
   }
 }

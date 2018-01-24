@@ -3,6 +3,6 @@ import { HttpStatus } from '@nestjs/common';
 
 export class <%= kebabToPascal(config.name) %>Exception extends HttpException {
   constructor() {
-    super('<%= kebabToPascal(config.name) %>', HttpStatus.<%= config.name.toUpperCase() %>);
+    super('<%= kebabToPascal(config.name) %>', HttpStatus.<%= kebabToConstant(config.name) %>);
   }
 }

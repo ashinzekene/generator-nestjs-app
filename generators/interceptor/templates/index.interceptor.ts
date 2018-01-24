@@ -3,8 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 @Interceptor()
-export abstract class CacheInterceptor implements NestInterceptor {
-  protected abstract readonly isCached: () => boolean;
+export abstract class <%= config.name[0].toUpperCase() + config.name.substring(1) %>Interceptor implements NestInterceptor {
 
   intercept(dataOrRequest, context: ExecutionContext, stream$: Observable<any>): Observable<any> {
     return stream$;

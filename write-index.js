@@ -43,8 +43,13 @@ module.exports = class extends Generator {
 }
 `
 
-fs.readdirSync('./generators').forEach(gen => {
-  if (gen.search("app") === -1 && fs.statSync('./generators/'+gen).isDirectory() ) {
-    fs.writeFileSync(path.resolve("./generators", gen, "index.js"), index)
-  }
-})
+function dir(dir) {
+  fs.readdirSync(dir).forEach(gen => {
+    if (gen.search("app") === -1 && fs.statSync(dir+gen).isDirectory() ) {
+      console.log(gen)
+      fs.writeFileSync(path.resolve(dir, gen, "index.js"), index)
+    }
+  })
+} 
+
+dir('./generators/')

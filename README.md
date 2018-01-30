@@ -48,7 +48,7 @@ $ yo nestjs
 __For other components run__
 
 ```sh
-$ yo nestjs:`COMPONENT` `NAME` 
+$ yo nestjs:[COMPONENT] [NAME] 
 ```
 For example
 
@@ -68,9 +68,10 @@ $ yo nestjs:decorator roles
 
 `--yarn` - Install dependencies with yarn 
 
-#### `yo nestjs:COMPONENT` (For creating components)
+#### `yo nestjs:[COMPONENT] [NAME]` (For creating components)
 
-`[name]` - The name of the component to be created
+`[COMPONENT]` - The type of the component to be created
+`[NAME]` - The name of the component to be created
 
 ### FILE AND COMPONENT NAMING
 
@@ -88,7 +89,7 @@ Contributions and filing of issues are gladly welcome. Before contributing, be s
 
 - For making pull requests, you can use the [PR template](PULL_REQUEST-TEMPLATE.md)
 
-- For submitting, you can use the [ISSUES template](ISSUE-TEMPLATE.md)
+- For submitting, you can use the [ISSUES template](ISSUE_TEMPLATE.md)
 
 ### LICENSE
 

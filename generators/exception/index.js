@@ -11,7 +11,9 @@ const kebabToConstant = require('../../utils/case-change').kebabToConstant
 module.exports = class extends Generator {
   constructor(args, opt) {
     super(args, opt)
-    this.argument("name")
+    this.argument("name", {
+      required: false
+    })
     this.appConfig = {}
   }
 

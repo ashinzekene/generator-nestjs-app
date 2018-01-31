@@ -1,7 +1,7 @@
 const path = require("path")
 const fs = require("fs")
-
-usageFile = `
+let elem = ""
+const oldUsage = ` 
 Description:
     Create a chrome extension boilerplate generator that creates everything for you. have fun.
 
@@ -15,14 +15,28 @@ Example:
 
         app/: Your application files.
         test/: Unit tests for your application.
+`
+
+usageFile = `
+
+Description:
+    Creaates a minimalistic NESTJS ###elem###
+
+Example:
+    yo nestjs $NAME[OPTIONAL]
+
+    This will create:
+        /src/modules/common/\${NAME}.###elem###.ts
         
+
 `
 
 function write(dir) {
   fs.readdirSync(dir).forEach(cDir => {
-    if (fs.statSync(path.resolve(dir, cDir)).isDirectory() ) {
+    elem = cDir
+    if (fs.statSync(path.resolve(dir, cDir)).isDirectory() && cDir !== 'app') {
       // console.log(path.resolve(dir+cDir+'\USAGE'))
-      fs.writeFileSync(path.resolve(dir,cDir,'USAGE'), usageFile)
+      fs.writeFileSync(path.resolve(dir,cDir,'USAGE'), usageFile.replace(/###elem###/g, cDir))
     }
   })
 }

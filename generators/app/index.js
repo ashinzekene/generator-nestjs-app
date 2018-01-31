@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const Generator = require('yeoman-generator');
 const yosay = require('yosay')
 const walkDir = require('../../utils/walk-dir')
-const appTypes = require('./appTypes')
+const appTypes = require('./app-types')
 
 module.exports = class extends Generator {
   constructor(args, opt) {

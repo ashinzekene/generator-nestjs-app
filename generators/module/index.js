@@ -19,28 +19,30 @@ module.exports = class extends Generator {
       description: "The name of the module to create",
       type: String
     })
+    this.myConfig = {}
   }
 
   prompting() {
     // Checks if user added a module option
-    // This is an array of the module types
-    let modTypes = moduleTypes.map(mod => mod.value)
-    let present = false
-    let selectedModule = ""
-    // assigns `true` to present if any module type is in the options
-    console.log(this.options)
-    for (let x in this.options) {
-      if (this.options[x] === true && moduleTypes.findIndex(mod => mod.value == x)) {
-        present = true
-        selectedModule = x
-        return;
-      }
+    this.myConfig.name = this.options['name']
+    if(this.options['mongoose-module']) {
+      this.myConfig.moduleType = "mongoose-module"
+      return Promise.resolve()
     }
-    if (present) {
-      console.log(`
-        Module: ${selectedModule}
-        Name: ${this.options['name']}
-      `)
+    if(this.options['sequelize-module']) {
+      this.myConfig.moduleType = "sequelize-module"
+      return Promise.resolve()
+    }
+    if(this.options['sql-typeorm-module']) {
+      this.myConfig.moduleType = "sql-typeorm-module"
+      return Promise.resolve()
+    }
+    if(this.options['mongo-typeorm-module']) {
+      this.myConfig.moduleType = "mongo-typeorm-module"
+      return Promise.resolve()
+    }
+    if(this.options['graph-module']) {
+      this.myConfig.moduleType = "graph-module"
       return Promise.resolve()
     }
     return this.prompt([
@@ -51,34 +53,29 @@ module.exports = class extends Generator {
         choices: moduleTypes
       }
     ]).then(res => {
-      this.appConfig = {}
-      this.appConfig.name = this.options['name']
-      this.appConfig.type = res.type
-      console.log(`
-        Name: ${this.appConfig.name}
-        Type: ${moduleTypes.find(type => type.value === this.appConfig.type).name}
-      `)
+      this.myConfig = {}
+      this.myConfig.name = this.options['name']
+      this.myConfig.moduleType = res.type
       this.log(chalk.bgWhite.red(`
-      
-      Name: ${this.appConfig.name}
-      Type: ${moduleTypes.find(type => type.value === this.appConfig.type).name}
+      Name: ${this.myConfig.name}
+      Type: ${moduleTypes.find(type => type.value === this.myConfig.type).name}
       `))
     })
     this._writeFiles()
   }
 
-  // writing() {
-  //   let files = walkDir(path.join(__dirname, "./templates/", this.appConfig.type))
-  //   let newFiles = files.map(pth => pth.replace(RegExp(`.+${this.appConfig.type}`), ""))
+  writing() {
+  //   let files = walkDir(path.join(__dirname, "./templates/", this.myConfig.type))
+  //   let newFiles = files.map(pth => pth.replace(RegExp(`.+${this.myConfig.type}`), ""))
 
   //   newFiles.forEach(file => {
-  //     this.fs.copyTpl(
-  //       this.templatePath(this.appConfig.type + "/"),
-  //       this.destinationPath(this.appConfig.identifier + "/"),
-  //       { config: this.appConfig }
-  //     );
+      this.fs.copyTpl(
+        this.templatePath(this.myConfig.moduleType + "/"),
+        this.destinationPath(this.myConfig.name + "/"),
+        { config: this.myConfig }
+      );
   //   })
-  // }
+  }
 
 
 };

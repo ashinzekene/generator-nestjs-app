@@ -46,7 +46,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'publisher',
         message: 'Enter publisher\'s name',
-        default: os.userInfo.username
+        default: os.userInfo().username
       },
       {
         type: 'list',

@@ -2,16 +2,16 @@ import { Component, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Photo } from './photo.entity';
+import { <%= kebabToPascal(config.name) %> } from './<%= kebabToCamel(config.name) %>.entity';
 
 @Component()
-export class PhotoService {
+export class <%= kebabToPascal(config.name) %>Service {
   constructor(
-    @InjectRepository(Photo)
-    private readonly photoRepository: Repository<Photo>,
+    @InjectRepository(<%= kebabToPascal(config.name) %>)
+    private readonly <%= kebabToCamel(config.name) %>Repository: Repository<<%= kebabToPascal(config.name) %>>,
   ) {}
 
-  async findAll(): Promise<Photo[]> {
-    return await this.photoRepository.find();
+  async findAll(): Promise<<%= kebabToPascal(config.name) %>[]> {
+    return await this.<%= kebabToCamel(config.name) %>Repository.find();
   }
 }

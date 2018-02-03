@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { PhotoService } from './photo.service';
-import { Photo } from './photo.entity';
+import { <%= kebabToPascal(config.name) %>Service } from './<%= kebabToCamel(config.name) %>.service';
+import { <%= kebabToPascal(config.name) %> } from './<%= kebabToCamel(config.name) %>.entity';
 
-@Controller('photo')
-export class PhotoController {
-  constructor(private readonly photoService: PhotoService) {}
+@Controller('<%= kebabToCamel(config.name) %>')
+export class <%= kebabToPascal(config.name) %>Controller {
+  constructor(private readonly <%= kebabToCamel(config.name) %>Service: <%= kebabToPascal(config.name) %>Service) {}
 
   @Get()
-  findAll(): Promise<Photo[]> {
-    return this.photoService.findAll();
+  findAll(): Promise<<%= kebabToPascal(config.name) %>[]> {
+    return this.<%= kebabToCamel(config.name) %>Service.findAll();
   }
 }

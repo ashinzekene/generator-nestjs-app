@@ -1,8 +1,8 @@
-import { Cat } from './cat.entity';
+import { <%= kebabToPascal(config.name) %> } from './<%= kebabToCamel(config.name) %>.entity';
 
-export const catsProviders = [
+export const <%= kebabToCamel(config.name) %>sProviders = [
   {
-    provide: 'CatsRepository',
-    useValue: Cat,
+    provide: '<%= kebabToPascal(config.name) %>sRepository',
+    useValue: <%= kebabToPascal(config.name) %>,
   },
 ];

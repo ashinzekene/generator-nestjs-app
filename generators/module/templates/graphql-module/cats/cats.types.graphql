@@ -1,14 +1,14 @@
 type Query {
-  getCats: [Cat]
-  cat(id: ID!): Cat
-  catByHumanId(id: ID!): Cat
+  get<%= kebabToPascal(config.name) %>s: [<%= kebabToPascal(config.name) %>]
+  <%= kebabToCamel(config.name) %>(id: ID!): <%= kebabToPascal(config.name) %>
+  <%= kebabToCamel(config.name) %>ByHumanId(id: ID!): <%= kebabToPascal(config.name) %>
 }
 
 type Mutation {
-  createCat(name: String): Cat
+  create<%= kebabToPascal(config.name) %>(name: String): <%= kebabToPascal(config.name) %>
 }
 
-type Cat {
+type <%= kebabToPascal(config.name) %> {
   id: Int
   name: String
   age: Int

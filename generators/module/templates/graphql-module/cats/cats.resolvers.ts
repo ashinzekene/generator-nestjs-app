@@ -6,35 +6,35 @@ import {
   DelegateProperty,
 } from '@nestjs/graphql';
 
-import { Cat } from './interfaces/cat.interface';
-import { CatsService } from './cats.service';
-import { CatsGuard } from './cats.guard';
+import { <%= kebabToPascal(config.name) %> } from './interfaces/<%= kebabToCamel(config.name) %>.interface';
+import { <%= kebabToPascal(config.name) %>sService } from './<%= kebabToCamel(config.name) %>s.service';
+import { <%= kebabToPascal(config.name) %>sGuard } from './<%= kebabToCamel(config.name) %>s.guard';
 import { MergeInfo } from 'graphql-tools/dist/Interfaces';
 
-@Resolver('Cat')
-export class CatsResolvers {
-  constructor(private readonly catsService: CatsService) {}
+@Resolver('<%= kebabToPascal(config.name) %>')
+export class <%= kebabToPascal(config.name) %>sResolvers {
+  constructor(private readonly <%= kebabToCamel(config.name) %>sService: <%= kebabToPascal(config.name) %>sService) {}
 
   @Query()
-  @UseGuards(CatsGuard)
-  async getCats() {
-    return await this.catsService.findAll();
+  @UseGuards(<%= kebabToPascal(config.name) %>sGuard)
+  async get<%= kebabToPascal(config.name) %>s() {
+    return await this.<%= kebabToCamel(config.name) %>sService.findAll();
   }
 
-  @Query('cat')
+  @Query('<%= kebabToCamel(config.name) %>')
   async findOneById(id: number) {
-    return await this.catsService.findOneById(id);
+    return await this.<%= kebabToCamel(config.name) %>sService.findOneById(id);
   }
 
-  @Mutation('createCat')
-  async create(cat: Cat) {
-    await this.catsService.create(cat);
+  @Mutation('create<%= kebabToPascal(config.name) %>')
+  async create(<%= kebabToCamel(config.name) %>: <%= kebabToPascal(config.name) %>) {
+    await this.<%= kebabToCamel(config.name) %>sService.create(<%= kebabToCamel(config.name) %>);
   }
 
   @DelegateProperty('human')
-  findHumansById(cat: Cat) {
+  findHumansById(<%= kebabToCamel(config.name) %>: <%= kebabToPascal(config.name) %>) {
     return (mergeInfo: MergeInfo) => ({
-      fragment: `fragment CatFragment on Cat { humanId }`,
+      fragment: `fragment <%= kebabToPascal(config.name) %>Fragment on <%= kebabToPascal(config.name) %> { humanId }`,
       resolve(parent, args, context, info) {
         const humanId = parent.id;
         return mergeInfo.delegate(

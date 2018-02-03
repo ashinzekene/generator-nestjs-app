@@ -1,21 +1,21 @@
 import { Component } from '@nestjs/common';
-import { Cat } from './interfaces/cat.interface';
+import { <%= kebabToPascal(config.name) %> } from './interfaces/<%= kebabToCamel(config.name) %>.interface';
 
 @Component()
-export class CatsService {
-  private readonly cats: Cat[] = [
-    { id: 1, name: 'Cat', age: 5 },
+export class <%= kebabToPascal(config.name) %>sService {
+  private readonly <%= kebabToCamel(config.name) %>s: <%= kebabToPascal(config.name) %>[] = [
+    { id: 1, name: '<%= kebabToPascal(config.name) %>', age: 5 },
   ];
 
-  create(cat: Cat) {
-    this.cats.push(cat);
+  create(<%= kebabToCamel(config.name) %>: <%= kebabToPascal(config.name) %>) {
+    this.<%= kebabToCamel(config.name) %>s.push(<%= kebabToCamel(config.name) %>);
   }
 
-  findAll(): Cat[] {
-    return this.cats;
+  findAll(): <%= kebabToPascal(config.name) %>[] {
+    return this.<%= kebabToCamel(config.name) %>s;
   }
 
-  findOneById(id: number): Cat {
-    return this.cats.find((cat) => cat.id === id);
+  findOneById(id: number): <%= kebabToPascal(config.name) %> {
+    return this.<%= kebabToCamel(config.name) %>s.find((<%= kebabToCamel(config.name) %>) => <%= kebabToCamel(config.name) %>.id === id);
   }
 }

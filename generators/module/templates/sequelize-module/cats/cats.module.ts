@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
-import { CatsController } from './cats.controller';
-import { CatsService } from './cats.service';
-import { catsProviders } from './cats.providers';
+import { <%= kebabToPascal(config.name) %>sController } from './<%= kebabToCamel(config.name) %>s.controller';
+import { <%= kebabToPascal(config.name) %>sService } from './<%= kebabToCamel(config.name) %>s.service';
+import { <%= kebabToCamel(config.name) %>sProviders } from './<%= kebabToCamel(config.name) %>s.providers';
 import { DatabaseModule } from '../database/database.module';
 
 @Module({
   modules: [DatabaseModule],
-  controllers: [CatsController],
+  controllers: [<%= kebabToPascal(config.name) %>sController],
   components: [
-    CatsService,
-    ...catsProviders,
+    <%= kebabToPascal(config.name) %>sService,
+    ...<%= kebabToCamel(config.name) %>sProviders,
   ],
 })
-export class CatsModule {}
+export class <%= kebabToPascal(config.name) %>sModule {}

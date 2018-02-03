@@ -1,35 +1,17 @@
-const moduleTypes = [
-  {
-    name: 'A mongoose module',
-    value: 'mongoose-module'
-  },
-  {
-    name: 'A sequelize module',
-    value: 'sequelize-module'
-  },
-  {
-    name: 'An SQL typeorm module',
-    value: 'sql-typeorm-module'
-  },
-  {
-    name: 'An mongo typeorm module',
-    value: 'mongo-typeorm-module'
-  },
-  {
-    name: 'An graphQl module',
-    value: 'graphql-module'
-  },
-]
+console.log("Beginning...")
 
-
-options = { 'mongo-typeorm-modle': 'yes', 'new-name': 'yup' }
-
-let modTypes = moduleTypes.map(mod => mod.value)
-let present = false
-Object.keys(options).forEach(modType => {
-  if (modTypes.findIndex(mod => mod === modType) > -1) {
-    present = true;
-    return;
-  }
+process.stdin.setEncoding('utf-8')
+process.stdin.on('data', data => {
+  changeName(data.trim())
 })
-console.log(present)
+
+function changeName(name) {
+  var res
+  console.log(name.indexOf('s'), ' ' ,name.endsWith('s'))
+  if (name.endsWith('s')) {
+    res = name.substr(0,name.length-1)
+  } else {
+    res = name
+  }
+  console.log(res+'\n')
+}

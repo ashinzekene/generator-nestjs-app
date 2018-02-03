@@ -70,7 +70,6 @@ module.exports = class extends Generator {
       Type: ${appTypes.find(type => type.value === this.appConfig.type).name}
       `))
     })
-    this._writeFiles()
   }
 
   writing() {

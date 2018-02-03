@@ -16,7 +16,7 @@ module.exports = class extends Generator {
     this.option('sequelize-module')
     this.option('sql-typeorm-module')
     this.option('mongo-typeorm-module')
-    this.option('graph-module')
+    this.option('graphql-module')
     this.argument('name', {
       required: true,
       description: "The name of the module to create",
@@ -44,8 +44,8 @@ module.exports = class extends Generator {
       this.myConfig.moduleType = "mongo-typeorm-module"
       return Promise.resolve()
     }
-    if (this.options['graph-module']) {
-      this.myConfig.moduleType = "graph-module"
+    if (this.options['graphql-module']) {
+      this.myConfig.moduleType = "graphql-module"
       return Promise.resolve()
     }
     return this.prompt([
@@ -59,12 +59,7 @@ module.exports = class extends Generator {
       this.myConfig = {}
       this.myConfig.name = this.options['name']
       this.myConfig.moduleType = res.type
-      this.log(chalk.bgWhite.red(`
-      Name: ${this.myConfig.name}
-      Type: ${moduleTypes.find(type => type.value === this.myConfig.type).name}
-      `))
     })
-    this._writeFiles()
   }
 
   writing() {
@@ -73,74 +68,78 @@ module.exports = class extends Generator {
     switch (moduleType) {
       case "mongoose-module": {
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/dto/create-cat.dto.ts'),
-          this.templatePath(`src/modules/${name}/dto/create-${name}.dto.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/dto/create-${name}.dto.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/interfaces/cat.interface.ts'),
-          this.templatePath(`src/modules/${name}/interfaces/${name}.interface.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/interfaces/${name}.interface.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/schemas/cat.schema.ts'),
-          this.templatePath(`src/modules/${name}/schemas/${name}.schema.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/schemas/${name}.schema.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.controller.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.module.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.service.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          return
       }
       case "sequelize-module": {
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/dto/create-cat.dto.ts'),
-          this.templatePath(`src/modules/${name}/dto/create-${name}.dto.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/dto/create-${name}.dto.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cat.entity.ts'),
-          this.templatePath(`src/modules/${name}/${name}.entity.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}.entity.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.controller.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.module.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.providers.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.providers.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.providers.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.service.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          return
       }
       case "sql-typeorm-module":
       case "mongo-typeorm-module": {
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cat.entity.ts'),
-          this.templatePath(`src/modules/${name}/${name}.entity.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}.entity.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.controller.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.controller.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.module.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.service.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          return
       }
-      case "graph-module": {
+      case "graphql-module": {
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/interfaces/cat.interface.ts'),
-          this.templatePath(`src/modules/${name}/interfaces/${name}.interface.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/interfaces/${name}.interface.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.guard.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.guard.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.guard.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.module.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.module.ts`), templateOptions)
 
-        this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.resolver.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.resolver.ts`), templateOptions)
+        this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.resolvers.ts'),
+          this.destinationPath(`src/modules/${name}/${name}s.resolvers.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.service.ts'),
-          this.templatePath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.service.ts`), templateOptions)
 
         this.fs.copyTpl(this.templatePath(moduleType + '/cats/cats.types.graphql'),
-          this.templatePath(`src/modules/${name}/${name}s.types.graphql`), templateOptions)
+          this.destinationPath(`src/modules/${name}/${name}s.types.graphql`), templateOptions)
+          return
       }
     }
   }

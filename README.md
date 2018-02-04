@@ -72,7 +72,7 @@ $ yo nestjs:decorator roles
 
 `[NAME]` - The name of the module to be created (required)
 
-OPTIONS
+ARGUMENTS
 
 --mongoose-module
 

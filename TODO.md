@@ -6,15 +6,15 @@
 - [x] Write function to change kebab-case to CONSTAT_CASE
 - [x] add module generator
 - [ ] remove useless files (interceptors, exception, decorators e.t.c) from app generator templates
-- [ ] add yeoman and nestjs image to readme
+- [x] add yeoman and nestjs image to readme
 - [x] `Usage` file
 - [ ] tests
 
 ### Generators For
-- [x]Decorator
-- [x]Exception
+- [x] Decorator
+- [x] Exception
 - [ ] Filter
-- [x]Guard
-- [x]Interceptor
-- [x]Middleware
+- [x] Guard
+- [x] Interceptor
+- [x] Middleware
 - [ ] Pipe

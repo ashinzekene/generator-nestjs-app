@@ -1,33 +1,27 @@
-# NESTJS GENERATOR
-
-A yeoman generator for nestjs apps.
+<p align="center">
+  <img src="yeoman.png" alt="NESTJS" />
+  <img src="nestjs.jpg" alt="NESTJS" />
+  <h1 align="center">NESTJS GENERATOR</h1>
+  <p align="center">A yeoman generator for nestjs apps.</p>
+</p>
 
 ### ABOUT
 This generator helps you create a [NestJS](https://github.com/nestjs/nest) app with ease. It also comes with support for the following
 
 - Decorators
 - Exceptions
-- Filters
 - Guards
 - Interceptors
 - Middlewares
-- Pipes
-
+- Modules
 ### OPTIONS
 
 NestJS app options available 
 
-- Basic App
-- A socket app with both client and server
-- A microservices app
-- An Injector app
 - SQL Typeorm app
 - Mongoose app
 - Seqelize app
 - Passport app
-- Babel JS app
-- Mockgoose app
-- Swagger app
 - Graph QL apollo app
 - Mongo Typeorm app
 - Configurable Mongoose app
@@ -71,7 +65,25 @@ $ yo nestjs:decorator roles
 #### `yo nestjs:[COMPONENT] [NAME]` (For creating components)
 
 `[COMPONENT]` - The type of the component to be created
+
 `[NAME]` - The name of the component to be created
+
+#### `yo nestjs:module [NAME]` (For creating a nestjs module)
+
+`[NAME]` - The name of the module to be created (required)
+
+OPTIONS
+
+--mongoose-module
+
+--sequelize-module
+
+--sql-typeorm
+
+--mongo-typeorm
+
+--graphql-module
+
 
 ### FILE AND COMPONENT NAMING
 

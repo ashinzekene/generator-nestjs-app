@@ -4,9 +4,18 @@ Description:
     Creaates a minimalistic NESTJS module
 
 Example:
-    yo nestjs $NAME[OPTIONAL]
+    yo nestjs:module NAME --MODULE-TYPE
 
+    - NAME - REQUIRED - name of module (use kebeb-case)
+    - MODULE-TYPE - type of module
+        OPTIONS
+        - A mongoose module
+        - A sequelize module
+        - An SQL typeorm module
+        - An mongo typeorm module
+        - An graphQl module
+        
     This will create:
-        /src/modules/common/${NAME}.module.ts
+        `/src/modules/common/${NAME}.module.ts`
         
 

@@ -23,10 +23,12 @@ Description:
     Creaates a minimalistic NESTJS ###elem###
 
 Example:
-    yo nestjs $NAME[OPTIONAL]
+    yo nestjs:###elem### NAME
+
+    - NAME - OPTIONAL - the name of the module (use kebab-case)
 
     This will create:
-        /src/modules/common/\${NAME}.###elem###.ts
+        \`/src/modules/common/\${NAME}.###elem###.ts\`
         
 
 `

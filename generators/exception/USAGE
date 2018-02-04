@@ -4,9 +4,11 @@ Description:
     Creaates a minimalistic NESTJS exception
 
 Example:
-    yo nestjs $NAME[OPTIONAL]
+    yo nestjs:exception NAME
+
+    - NAME - OPTIONAL - the name of the module (use kebab-case)
 
     This will create:
-        /src/modules/common/${NAME}.exception.ts
+        `/src/modules/common/${NAME}.exception.ts`
         
 

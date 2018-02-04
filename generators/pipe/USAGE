@@ -4,9 +4,11 @@ Description:
     Creaates a minimalistic NESTJS pipe
 
 Example:
-    yo nestjs $NAME[OPTIONAL]
+    yo nestjs:pipe NAME
+
+    - NAME - OPTIONAL - the name of the module (use kebab-case)
 
     This will create:
-        /src/modules/common/${NAME}.pipe.ts
+        `/src/modules/common/${NAME}.pipe.ts`
         
 

@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="yeoman.png" alt="NESTJS" />
-  <img src="nestjs.jpg" alt="NESTJS" />
+  <img src="./yeoman.png" alt="YEOMAN" />
+  <img src="./nestjs.jpg" alt="NESTJS" />
   <h1 align="center">NESTJS GENERATOR</h1>
   <p align="center">A yeoman generator for nestjs apps.</p>
 </p>
@@ -56,6 +56,8 @@ $ yo nestjs:decorator roles
 ### OPTIONS
 
 #### `yo nestjs` (For creating a NestJS app)
+
+
 `--skip-install` - Skips installation of dependencies when bootstrappping an app 
 
 `--npm` - Install dependencies with npm 
@@ -64,11 +66,13 @@ $ yo nestjs:decorator roles
 
 #### `yo nestjs:[COMPONENT] [NAME]` (For creating components)
 
+
 `[COMPONENT]` - The type of the component to be created
 
 `[NAME]` - The name of the component to be created
 
 #### `yo nestjs:module [NAME]` (For creating a nestjs module)
+
 
 `[NAME]` - The name of the module to be created (required)
 
@@ -90,7 +94,7 @@ ARGUMENTS
 By [Angular File Naming Convention](https://angular.io/guide/styleguide), names for components should be in kebab case. For example
 
 ```
-yo nest:decorator app-user-routes
+yo nestjs:decorator app-user-routes
 ```
 
 This creates a decorator with filename `app-user-routes.decorator.ts` decorator name `AppUserRoutesDecorator`

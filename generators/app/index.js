@@ -92,10 +92,20 @@ module.exports = class extends Generator {
         ${chalk.white('$')} npm install
       `))
     } else {
-      this.installDependencies({
-        npm: this.options['npm'],
-        yarn: this.options['yarn']
-      })
+      if (this.options['yarn']) {
+        this.installDependencies({
+          yarn: true,
+          bower: false,
+          npm: false,
+        })
+      } else {
+        this.installDependencies({
+          npm: true,
+          yarn: false,
+          bower: false,
+        })
+
+      }
     }
   }
 

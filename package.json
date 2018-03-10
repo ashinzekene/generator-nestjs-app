@@ -7,7 +7,9 @@
     "url": "git+https://github.com/ashinzekene/generator-nestjs-app.git"
   },
   "files": [
-    "generators"
+    "generators",
+    "scripts",
+    "utils"
   ],
   "keywords": [
     "yeoman-generator",

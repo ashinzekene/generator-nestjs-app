@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="./yeoman.png" alt="YEOMAN" />
   <img src="./nestjs.jpg" alt="NESTJS" />
+  <img src="./yeoman.png" alt="YEOMAN" />
   <h1 align="center">NESTJS GENERATOR</h1>
   <p align="center">A yeoman generator for nestjs apps.</p>
 </p>
@@ -37,25 +37,25 @@ $ npm install -g generator-nestjs-app
 __The to create an app, run__
 
 ```sh
-$ yo nestjs
+$ yo nestjs-app
 ```
 __For other components run__
 
 ```sh
-$ yo nestjs:[COMPONENT] [NAME] 
+$ yo nestjs-app:[COMPONENT] [NAME] 
 ```
 For example
 
 ```sh
-$ yo nestjs:middleware app-auth
+$ yo nestjs-app:middleware app-auth
 ```
 ```sh
-$ yo nestjs:decorator roles
+$ yo nestjs-app:decorator roles
 ```
 
 ### OPTIONS
 
-#### `yo nestjs` (For creating a NestJS app)
+#### `yo nestjs-app` (For creating a NestJS app)
 
 
 `--skip-install` - Skips installation of dependencies when bootstrappping an app 
@@ -64,14 +64,14 @@ $ yo nestjs:decorator roles
 
 `--yarn` - Install dependencies with yarn 
 
-#### `yo nestjs:[COMPONENT] [NAME]` (For creating components)
+#### `yo nestjs-app:[COMPONENT] [NAME]` (For creating components)
 
 
 `[COMPONENT]` - The type of the component to be created
 
 `[NAME]` - The name of the component to be created
 
-#### `yo nestjs:module [NAME]` (For creating a nestjs module)
+#### `yo nestjs-app:module [NAME]` (For creating a nestjs module)
 
 
 `[NAME]` - The name of the module to be created (required)
@@ -94,7 +94,7 @@ ARGUMENTS
 By [Angular File Naming Convention](https://angular.io/guide/styleguide), names for components should be in kebab case. For example
 
 ```
-yo nestjs:decorator app-user-routes
+yo nestjs-app:decorator app-user-routes
 ```
 
 This creates a decorator with filename `app-user-routes.decorator.ts` decorator name `AppUserRoutesDecorator`
@@ -110,4 +110,3 @@ Contributions and filing of issues are gladly welcome. Before contributing, be s
 ### LICENSE
 
 [MIT LICENSE](LICENSE.md)
-

@@ -17,7 +17,7 @@ module.exports = class extends Generator {
     this.option('npm');
   }
   initializing() {
-    this.log(yosay(`Welcome to the ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}`))
+    this.log(yosay(`Welcome to the \n ${chalk.bgRed.white.bold("NESTJS Generator!")} \n Let's scaffold a new ${chalk.bgRed.white('NESTJS APP')}`))
   }
 
   prompting() {
@@ -62,13 +62,11 @@ module.exports = class extends Generator {
       this.appConfig.publisher = res.publisher
       this.appConfig.type = res.type
       this.log(chalk.bgWhite.red(`
-      
-      Name: ${this.appConfig.name}
-      Identifier: ${this.appConfig.identifier}
-      Description: ${this.appConfig.description}
-      Publisher: ${this.appConfig.publisher}
-      Type: ${appTypes.find(type => type.value === this.appConfig.type).name}
-      `))
+  Name: ${this.appConfig.name}  
+  Identifier: ${this.appConfig.identifier}  
+  Description: ${this.appConfig.description}  
+  Publisher: ${this.appConfig.publisher}  
+  Type: ${appTypes.find(type => type.value === this.appConfig.type).name}  `))  
     })
   }
 
@@ -97,17 +95,6 @@ module.exports = class extends Generator {
       this.installDependencies({
         npm: this.options['npm'],
         yarn: this.options['yarn']
-      }).then(() => {
-        this.log(chalk.green(`
-            Ready to rubmle....
-          `))
-      }).catch(() => {
-        this.log(chalk.green(`
-        Could not install dependencies, to install them later, run 
-
-        ${chalk.white('$')} cd ${this.appConfig.identifier}/
-        ${chalk.white('$')} npm install
-        `))
       })
     }
   }

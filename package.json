@@ -35,7 +35,7 @@
   "homepage": "https://github.com/ashinzekene/generator-nestjs-app#readme",
   "dependencies": {
     "chalk": "^2.3.0",
-    "yeoman-generator": "^1.0.0",
+    "yeoman-generator": "^4.0.1",
     "yosay": "^2.0.1"
   },
   "devDependencies": {

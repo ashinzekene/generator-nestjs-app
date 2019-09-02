@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS guard
+    Creates a minimalistic NESTJS guard
 
 Example:
     yo nestjs:guard NAME

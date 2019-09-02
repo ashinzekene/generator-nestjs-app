@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS interceptor
+    Creates a minimalistic NESTJS interceptor
 
 Example:
     yo nestjs:interceptor NAME

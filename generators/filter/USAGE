@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS filter
+    Creates a minimalistic NESTJS filter
 
 Example:
     yo nestjs:filter NAME

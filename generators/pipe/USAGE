@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS pipe
+    Creates a minimalistic NESTJS pipe
 
 Example:
     yo nestjs:pipe NAME

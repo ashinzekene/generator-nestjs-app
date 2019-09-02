@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS exception
+    Creates a minimalistic NESTJS exception
 
 Example:
     yo nestjs:exception NAME

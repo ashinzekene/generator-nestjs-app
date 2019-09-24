@@ -1,7 +1,7 @@
 
 
 Description:
-    Creaates a minimalistic NESTJS middleware
+    Creates a minimalistic NESTJS middleware
 
 Example:
     yo nestjs:middleware NAME
